@@ -1,3 +1,38 @@
+<template>
+  <div class="content-container">
+    <ListHeader
+      :title="title"
+      @refresh="getProducts"
+      @add="enableAddMode"
+      :routePath="routePath"
+    ></ListHeader>
+    <div class="columns is-multiline is-variable">
+      <div class="column is-8" v-if="products">
+        <ProductList
+          v-if="!selected"
+          :products="products"
+          @selected="select($event)"
+          @deleted="askToDelete($event)"
+        ></ProductList>
+        <ProductDetail
+          v-if="selected"
+          :product="selected"
+          @unselect="clear"
+          @save="save"
+        ></ProductDetail>
+      </div>
+    </div>
+
+    <Modal
+      class="modal-product"
+      :message="message"
+      :isOpen="showModal"
+      @handleNo="closeModal"
+      @handleYes="deleteProduct"
+    ></Modal>
+  </div>
+</template>
+
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import ListHeader from '@/components/list-header.vue';
@@ -83,38 +118,3 @@ export default {
   },
 };
 </script>
-
-<template>
-  <div class="content-container">
-    <ListHeader
-      :title="title"
-      @refresh="getProducts"
-      @add="enableAddMode"
-      :routePath="routePath"
-    ></ListHeader>
-    <div class="columns is-multiline is-variable">
-      <div class="column is-8" v-if="products">
-        <ProductList
-          v-if="!selected"
-          :products="products"
-          @selected="select($event)"
-          @deleted="askToDelete($event)"
-        ></ProductList>
-        <ProductDetail
-          v-if="selected"
-          :product="selected"
-          @unselect="clear"
-          @save="save"
-        ></ProductDetail>
-      </div>
-    </div>
-
-    <Modal
-      class="modal-product"
-      :message="message"
-      :isOpen="showModal"
-      @handleNo="closeModal"
-      @handleYes="deleteProduct"
-    ></Modal>
-  </div>
-</template>

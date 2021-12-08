@@ -5,6 +5,8 @@
       <p>
         This project was created to help represent a fundamental app written
         with Vue. The shopping theme is used throughout the app.
+        <br />
+        by Alex XerXes
       </p>
       <br />
       <h2 class="title">Resources</h2>

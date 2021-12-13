@@ -1,0 +1,8 @@
+
+
+حذفتها من ملف api/host.json
+  "extensionBundle": {
+    "id": "Microsoft.Azure.Functions.ExtensionBundle",
+    "version": "[2.*, 3.0.0)"
+  }
+
